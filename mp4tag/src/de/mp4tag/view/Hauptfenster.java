@@ -32,7 +32,7 @@ public class Hauptfenster<File> extends JFrame {
 	private JTextField txtTxtstatuszeile;
 	private JTextField txtPfad;
 	
-	private File fPfad;
+//	private File fPfad;
 	private JTable tableMp4Dateien;
 
 	/**
