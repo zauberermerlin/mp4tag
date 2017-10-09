@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+
+import de.mp4tag.model.Tag;
+
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.JMenuBar;
@@ -25,12 +28,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTree;
 import javax.swing.JTable;
+import javax.swing.BoxLayout;
+import javax.swing.SwingConstants;
+import java.awt.Dimension;
 
 public class Hauptfenster<File> extends JFrame {
 
+	private static final long serialVersionUID = -2246360012555585813L;
 	private JPanel contentPane;
 	private JTextField txtTxtstatuszeile;
 	private JTextField txtPfad;
+	
+	private Tag tagDatenfelder;
 	
 //	private File fPfad;
 	private JTable tableMp4Dateien;
@@ -160,27 +169,45 @@ public class Hauptfenster<File> extends JFrame {
 			    };
 
 		tableMp4Dateien = new JTable(rowData, columnNames);
-		panel_1_mp4.add(tableMp4Dateien, BorderLayout.CENTER);
-		add( new JScrollPane(tableMp4Dateien));
-	    
-//	    JTable table = new JTable( rowData, columnNames );
-//			    f.add( new JScrollPane( table ) );
 
-	//		    f.pack();
-
+//		panel_1_mp4.add(tableMp4Dateien, BorderLayout.CENTER);
+//		add( new JScrollPane(tableMp4Dateien));
+		
+		panel_1_mp4.add(new JScrollPane(tableMp4Dateien), BorderLayout.CENTER);
 		
 		
 		
 		JPanel panelMp4RechteLeiste = new JPanel();
-		FlowLayout fl_panelMp4RechteLeiste = (FlowLayout) panelMp4RechteLeiste.getLayout();
-		fl_panelMp4RechteLeiste.setHgap(100);
+		panelMp4RechteLeiste.setMaximumSize(new Dimension(100, 100));
+		panelMp4RechteLeiste.setMinimumSize(new Dimension(100, 100));
 		panel_1_mp4.add(panelMp4RechteLeiste, BorderLayout.EAST);
+		panelMp4RechteLeiste.setLayout(new BoxLayout(panelMp4RechteLeiste, BoxLayout.Y_AXIS));
 		
-		JLabel lblButtons = new JLabel("Buttons");
-		panelMp4RechteLeiste.add(lblButtons);
+		JButton btnMakedir = new JButton("Verzeichnis erstellen");
+		btnMakedir.setVerticalAlignment(SwingConstants.TOP);
+		panelMp4RechteLeiste.add(btnMakedir);
+		
+		JButton btnMp4Verschieben = new JButton("mp4 verschieben");
+		btnMp4Verschieben.setVerticalAlignment(SwingConstants.TOP);
+		panelMp4RechteLeiste.add(btnMp4Verschieben);
+		
+		JButton btnErstellenVerschieben = new JButton("erstellen + verschieben");
+		panelMp4RechteLeiste.add(btnErstellenVerschieben);
+		
+		/*
+		 * ========================
+		 * Panel 2: media/genre
+		 * ========================
+		 */
+		
 		
 		JPanel panel_2_mediagenre = new JPanel();
 		tabbedPane.addTab("media-genre", null, panel_2_mediagenre, null);
+		
+		tagDatenfelder = new Tag();
+		tagDatenfelder.setTagSlugName(txtPfad.getName());
+		
+		
 		
 		txtTxtstatuszeile = new JTextField();
 		txtTxtstatuszeile.setText("txtStatuszeile");
