@@ -53,21 +53,7 @@ public class Tag {
 	 * Hier beginnen die Funktionen
 	 * ============================================================
 	 */
-	
-	
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public Tag datenHolen() {
 		
-	
-		
-		
-		return datenfelder;
-	}
-	
 	
 	public void datenInDateiSchreiben(File fdatei) {
 		

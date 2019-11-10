@@ -31,6 +31,8 @@ import javax.swing.JTable;
 import javax.swing.BoxLayout;
 import javax.swing.SwingConstants;
 import java.awt.Dimension;
+import java.awt.GridLayout;
+import javax.swing.JList;
 
 public class Hauptfenster<File> extends JFrame {
 
@@ -39,10 +41,8 @@ public class Hauptfenster<File> extends JFrame {
 	private JTextField txtTxtstatuszeile;
 	private JTextField txtPfad;
 	
-	private Tag tagDatenfelder;
-	
-//	private File fPfad;
-	private JTable tableMp4Dateien;
+//	private Tag tagDatenfelder;
+	Tag tagSlugDatenfelder = new Tag();
 
 	/**
 	 * Launch the application.
@@ -167,28 +167,19 @@ public class Hauptfenster<File> extends JFrame {
 	    String[] columnNames =  {
 			      "Land", "Durchschnittliche Fernsehdauer pro Tag in Minuten"
 			    };
-
-		tableMp4Dateien = new JTable(rowData, columnNames);
-
-//		panel_1_mp4.add(tableMp4Dateien, BorderLayout.CENTER);
-//		add( new JScrollPane(tableMp4Dateien));
-		
-		panel_1_mp4.add(new JScrollPane(tableMp4Dateien), BorderLayout.CENTER);
 		
 		
 		
 		JPanel panelMp4RechteLeiste = new JPanel();
-		panelMp4RechteLeiste.setMaximumSize(new Dimension(100, 100));
+		panelMp4RechteLeiste.setMaximumSize(new Dimension(200, 200));
 		panelMp4RechteLeiste.setMinimumSize(new Dimension(100, 100));
 		panel_1_mp4.add(panelMp4RechteLeiste, BorderLayout.EAST);
-		panelMp4RechteLeiste.setLayout(new BoxLayout(panelMp4RechteLeiste, BoxLayout.Y_AXIS));
+		panelMp4RechteLeiste.setLayout(new GridLayout(6, 1, 10, 20));
 		
 		JButton btnMakedir = new JButton("Verzeichnis erstellen");
-		btnMakedir.setVerticalAlignment(SwingConstants.TOP);
 		panelMp4RechteLeiste.add(btnMakedir);
 		
 		JButton btnMp4Verschieben = new JButton("mp4 verschieben");
-		btnMp4Verschieben.setVerticalAlignment(SwingConstants.TOP);
 		panelMp4RechteLeiste.add(btnMp4Verschieben);
 		
 		JButton btnErstellenVerschieben = new JButton("erstellen + verschieben");
@@ -204,8 +195,6 @@ public class Hauptfenster<File> extends JFrame {
 		JPanel panel_2_mediagenre = new JPanel();
 		tabbedPane.addTab("media-genre", null, panel_2_mediagenre, null);
 		
-		tagDatenfelder = new Tag();
-		tagDatenfelder.setTagSlugName(txtPfad.getName());
 		
 		
 		
@@ -214,4 +203,11 @@ public class Hauptfenster<File> extends JFrame {
 		contentPane.add(txtTxtstatuszeile, BorderLayout.SOUTH);
 		txtTxtstatuszeile.setColumns(10);
 	}
+	
+	
+	public void slugDatenHolen() {
+		tagSlugDatenfelder.setTagSlugName(txtPfad.getName());
+		
+	}
+	
 }
